@@ -14,8 +14,12 @@ const styles = theme => ({
   },
 
   generatorInput: {
-    border: "solid 1px",
+    border: "solid 2px",
     padding: "4px"
+  },
+
+  generatorOutput: {
+    fontFamily: "Open Sans"
   }
 });
 
@@ -49,10 +53,8 @@ class App extends React.Component {
   }
 
   handleStackNameChange(newStackName) {
-    console.log("poggers");
-
     this.setState({
-      stackName: newStackName
+      stackName: newStackName.toLowerCase()
     });
   }
 
@@ -68,7 +70,7 @@ class App extends React.Component {
         >
           <Grid item xs={12}>
             <h1 className={this.props.classes.heading}>
-              What The Fuck Is My Stack?
+              what the fuck is my stack?
             </h1>
           </Grid>
           <Grid item xs={12} lg={10}>
@@ -78,7 +80,13 @@ class App extends React.Component {
             />
           </Grid>
           <Grid item xs={12}>
-            <StackNameGenerator stackName={this.state.stackName} />
+            <StackNameGenerator
+              css={{
+                heading: this.props.classes.heading,
+                generatorOutput: this.props.classes.generatorOutput
+              }}
+              stackName={this.state.stackName}
+            />
           </Grid>
         </Grid>
       </MuiThemeProvider>
