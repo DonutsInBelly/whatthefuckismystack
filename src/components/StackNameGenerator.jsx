@@ -25,7 +25,6 @@ class StackNameGenerator extends React.Component {
     }).then(async response => {
       let results = response.data.split("\n");
       let filteredResults = results.filter(word => word != null && word !== "");
-      console.log(filteredResults);
       const randomIndex = Math.floor(Math.random() * filteredResults.length);
       return filteredResults[randomIndex];
     });
