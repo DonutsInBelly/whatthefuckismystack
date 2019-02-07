@@ -49,24 +49,16 @@ const theme = createMuiTheme({
 
 class App extends React.Component {
   state = {
-    stackName: "",
-    nameStack: []
+    stackName: ""
   };
   constructor(props) {
     super(props);
     this.handleStackNameChange = this.handleStackNameChange.bind(this);
-    this.handleStackUpdate = this.handleStackUpdate.bind(this);
   }
 
   handleStackNameChange(newStackName) {
     this.setState({
       stackName: newStackName.toLowerCase()
-    });
-  }
-
-  handleStackUpdate(newStack) {
-    this.setState({
-      nameStack: newStack
     });
   }
 
@@ -108,8 +100,6 @@ class App extends React.Component {
                 generatorOutput: this.props.classes.generatorOutput
               }}
               stackName={this.state.stackName}
-              nameStack={this.state.nameStack}
-              handleStackUpdate={this.handleStackUpdate}
             />
           </Grid>
           <Grid item xs={12}>

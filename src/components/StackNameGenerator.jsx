@@ -29,22 +29,21 @@ class StackNameGenerator extends React.Component {
     });
   }
 
-  async generateStack(stackName, oldStack) {
+  async generateStack(stackName) {
     let listOfThings = [];
     for (var i = 0; i < stackName.length; i++) {
-      if(oldStack.length > i && oldStack[i].charAt(0).toLowerCase() === stackName.charAt(i).toLowerCase()) {
-        listOfThings.push(oldStack[i]);
+      if(this.state.generatedList.length > i && this.state.generatedList[i].charAt(0).toLowerCase() === stackName.charAt(i).toLowerCase()) {
+        listOfThings.push(this.state.generatedList[i]);
       } else if (/^[a-zA-Z]+$/.test(stackName.charAt(i))) {
         listOfThings.push(await this.makeRequest(stackName.charAt(i)));
       }
     }
     this.setState({ generatedList: listOfThings });
-    this.props.handleStackUpdate(listOfThings);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.stackName !== this.props.stackName) {
-      this.generateStack(this.props.stackName, this.props.nameStack);
+      this.generateStack(this.props.stackName);
     }
   }
 
