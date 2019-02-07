@@ -1,6 +1,5 @@
 import React from "react";
 import { List, ListItem } from "@material-ui/core";
-import { memoize } from "lodash";
 import axios from "axios";
 
 class StackNameGenerator extends React.Component {
@@ -30,22 +29,22 @@ class StackNameGenerator extends React.Component {
     });
   }
 
-  // maybe we'll memoize this in the future
-  getData = memoize(this.makeRequest);
-
-  async generateStack(stackName) {
+  async generateStack(stackName, oldStack) {
     let listOfThings = [];
     for (var i = 0; i < stackName.length; i++) {
-      if (/^[a-zA-Z]+$/.test(stackName.charAt(i))) {
+      if(oldStack.length > i && oldStack[i].charAt(0).toLowerCase() === stackName.charAt(i).toLowerCase()) {
+        listOfThings.push(oldStack[i]);
+      } else if (/^[a-zA-Z]+$/.test(stackName.charAt(i))) {
         listOfThings.push(await this.makeRequest(stackName.charAt(i)));
       }
     }
     this.setState({ generatedList: listOfThings });
+    this.props.handleStackUpdate(listOfThings);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.stackName !== this.props.stackName) {
-      this.generateStack(this.props.stackName);
+      this.generateStack(this.props.stackName, this.props.nameStack);
     }
   }
 
