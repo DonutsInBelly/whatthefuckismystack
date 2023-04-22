@@ -4,7 +4,7 @@ import axios from "axios";
 
 class StackNameGenerator extends React.Component {
   URL =
-    "https://raw.githubusercontent.com/dominusbelli/whatthefuckismystack/master/data/";
+    "https://raw.githubusercontent.com/donutsinbelly/whatthefuckismystack/master/data/";
 
   state = {
     stackName: "",
