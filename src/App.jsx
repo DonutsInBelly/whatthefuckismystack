@@ -124,6 +124,7 @@ class App extends React.Component {
               <a
                 href="https://github.com/dominusbelli/whatthefuckismystack"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Checkout the Github repo here!
               </a>
